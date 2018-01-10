@@ -1,3 +1,6 @@
 #Mac OS File Perproties
 .DS_Store
 .idea
+*.iml
+*.class
+/target
