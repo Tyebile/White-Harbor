@@ -42,10 +42,10 @@
         </commentGenerator>
 
         <!-- 数据库连接 -->
-        <jdbcConnection driverClass=""
+        <jdbcConnection driverClass="${generator.jdbc.driver}"
                         connectionURL="${generator.jdbc.url}"
                         userId="${generator.jdbc.username}"
-                        password="0811" />
+                        password="xcrmdbdev--2016" />
 
         <!-- model生成 -->
         <javaModelGenerator targetPackage="tech.tyebile.pentos.generator.model" targetProject="/Users/tyebilesong/Developer/Java/pentos/src/main/java" />
@@ -55,6 +55,8 @@
         <!-- Mapper接口生成 -->
 
         <!-- 需要映射的表 -->
-                                    <table tableName="uams_user" domainObjectName="UamsUser"></table>
-                        </context>
+                <table tableName="t_b_chain" domainObjectName="Chain">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+            </context>
 </generatorConfiguration>

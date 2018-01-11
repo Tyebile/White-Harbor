@@ -1,6 +1,5 @@
 package tech.tyebile.pentos.generator;
 
-
 import tech.tyebile.pentos.generator.util.MybatisGeneratorUtil;
 import tech.tyebile.pentos.generator.util.PropertiesFileUtil;
 
@@ -11,9 +10,8 @@ import tech.tyebile.pentos.generator.util.PropertiesFileUtil;
  */
 public class Generator {
 
-//    private static String MODULE = "zheng-upms";
-//    private static String DATABASE = "zheng";
-//    private static String TABLE_PREFIX = "upms_";
+    /**表名前缀*/
+    private static String TABLE_PREFIX = "t_b_";
     /**包路径*/
     private static String PACKAGE_NAME = "tech.tyebile.pentos.generator";
 
@@ -27,6 +25,8 @@ public class Generator {
      * @param args
      */
     public static void main(String[] args) throws Exception {
-        MybatisGeneratorUtil.generator(JDBC_DRIVER, JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD, PACKAGE_NAME);
+
+        String tableName = "t_b_chain";
+        MybatisGeneratorUtil.generator(JDBC_DRIVER, JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD, PACKAGE_NAME, tableName, TABLE_PREFIX);
     }
 }

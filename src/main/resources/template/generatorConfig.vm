@@ -59,10 +59,15 @@
 
         <!-- 需要映射的表 -->
         #foreach($table in $tables)
-            #if($last_insert_id_tables.containsKey($!table.table_name) == true)
-            #else
-                <table tableName="$!table.table_name" domainObjectName="$!table.model_name"></table>
-            #end
+        <table tableName="$!table.table_name" domainObjectName="$!table.model_name">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
         #end
+##        #foreach($table in $tables)
+##            #if($last_insert_id_tables.containsKey($!table.table_name) == true)
+##            #else
+##                <table tableName="$!table.table_name" domainObjectName="$!table.model_name"></table>
+##            #end
+##        #end
     </context>
 </generatorConfiguration>

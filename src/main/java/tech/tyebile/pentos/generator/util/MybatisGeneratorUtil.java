@@ -26,12 +26,25 @@ public class MybatisGeneratorUtil {
     /**generatorConfig模板路径*/
     private static String generatorConfig_vm = "/template/generatorConfig.vm";
 
+    /**
+     * main method
+     * @param jdbcDriver
+     * @param jdbcUrl
+     * @param jdbcUsername
+     * @param jdbcPassword
+     * @param packageName
+     * @param tableName
+     * @param tablePrefix
+     * @throws Exception
+     */
     public static void generator(
             String jdbcDriver,
             String jdbcUrl,
             String jdbcUsername,
             String jdbcPassword,
-            String packageName) throws Exception {
+            String packageName,
+            String tableName,
+            String tablePrefix) throws Exception {
 
         String targetProject = MybatisGeneratorUtil.class.getResource("/").getPath().replace("/target/classes/", "") + "/src/main/java";
 
@@ -53,8 +66,9 @@ public class MybatisGeneratorUtil {
 
 
         table = new HashMap<>(2);
-        table.put("table_name", "uams_user");
-        table.put("model_name", lineToHump(ObjectUtils.toString("uams_user")));
+        table.put("table_name", tableName);
+        //删除表名前缀
+        table.put("model_name", lineToHump(ObjectUtils.toString(tableName).replace(tablePrefix, "")));
         tables.add(table);
 
         context.put("tables", tables);

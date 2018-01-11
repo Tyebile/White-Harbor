@@ -18,7 +18,7 @@ import java.security.SecureRandom;
  */
 public class AESCryptUtil {
 
-    private static final String ENCODE_RULES = "zheng";
+    private static final String ENCODE_RULES = "tyebile";
 
     /**
      * 加密
@@ -119,7 +119,7 @@ public class AESCryptUtil {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (IllegalBlockSizeException e) {
-            throw new RuntimeException("兄弟，配置文件中的密码需要使用AES加密，请使用com.zheng.common.util.AESUtil工具类修改这些值！");
+            throw new RuntimeException("兄弟，配置文件中的密码需要使用AES加密，请使用tech.tyebile.pentos.generator.util.AESUtil工具类修改这些值！");
         } catch (BadPaddingException e) {
             e.printStackTrace();
         }
