@@ -18,6 +18,7 @@
         <!-- 为生成的Java模型类添加序列化接口，并生成serialVersionUID字段 -->
         <plugin type="tech.tyebile.pentos.generator.plugin.SerializablePlugin">
             <property name="suppressJavaInterface" value="false"/>
+            <property name="suppressSaasDb" value="true"/>
         </plugin>
 
         <!-- 生成在XML中的<cache>元素 -->
@@ -34,7 +35,7 @@
         </plugin>
 
         <!-- Java模型生成equals和hashcode方法 -->
-        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+##        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
 
         <!-- 生成的代码去掉注释 -->
         <commentGenerator type="tech.tyebile.pentos.generator.plugin.CommentGenerator">
@@ -60,7 +61,9 @@
         <!-- 需要映射的表 -->
         #foreach($table in $tables)
         <table tableName="$!table.table_name" domainObjectName="$!table.model_name">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
             <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
         </table>
         #end
 ##        #foreach($table in $tables)
