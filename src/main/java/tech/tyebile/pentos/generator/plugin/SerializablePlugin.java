@@ -17,6 +17,7 @@ public class SerializablePlugin extends PluginAdapter {
     private FullyQualifiedJavaType gwtSerializable = new FullyQualifiedJavaType("com.google.gwt.user.client.rpc.IsSerializable");
     private boolean addGWTInterface;
     private boolean suppressJavaInterface;
+    private boolean saasDb;
 
     public SerializablePlugin() {
     }
@@ -31,6 +32,7 @@ public class SerializablePlugin extends PluginAdapter {
         super.setProperties(properties);
         this.addGWTInterface = Boolean.valueOf(properties.getProperty("addGWTInterface")).booleanValue();
         this.suppressJavaInterface = Boolean.valueOf(properties.getProperty("suppressJavaInterface")).booleanValue();
+        this.saasDb = Boolean.valueOf(properties.getProperty("suppressSaasDb")).booleanValue();
     }
 
     @Override
@@ -42,6 +44,7 @@ public class SerializablePlugin extends PluginAdapter {
     @Override
     public boolean modelPrimaryKeyClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         this.makeSerializable(topLevelClass, introspectedTable);
+        this.makeSaasDb(topLevelClass);
         return true;
     }
 
@@ -70,6 +73,17 @@ public class SerializablePlugin extends PluginAdapter {
             this.context.getCommentGenerator().addFieldComment(field, introspectedTable);
             topLevelClass.addField(field);
         }
+
+        if(this.saasDb){
+            topLevelClass.addImportedType("com.xcrm.core.db.annotation.PrimaryKeyField");
+            topLevelClass.addImportedType("com.xcrm.core.db.annotation.Table");
+        }
+
+    }
+
+    protected void makeSaasDb(TopLevelClass topLevelClass) {
+
+        topLevelClass.addImportedType("com.xcrm.core.db.annotation.PrimaryKeyField");
 
     }
 

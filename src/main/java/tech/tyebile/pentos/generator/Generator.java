@@ -11,9 +11,10 @@ import tech.tyebile.pentos.generator.util.PropertiesFileUtil;
 public class Generator {
 
     /**表名前缀*/
-    private static String TABLE_PREFIX = "t_b_";
+    private static String TABLE_PREFIX = "t_t_";
     /**包路径*/
-    private static String PACKAGE_NAME = "tech.tyebile.pentos.generator";
+//    private static String PACKAGE_NAME = "tech.tyebile.pentos.generator";
+    private static String PACKAGE_NAME = "com.xcrm.core.maintain.entity";
 
     private static String JDBC_DRIVER = PropertiesFileUtil.getInstance("generator").get("generator.jdbc.driver");
     private static String JDBC_URL = PropertiesFileUtil.getInstance("generator").get("generator.jdbc.url");
@@ -26,7 +27,7 @@ public class Generator {
      */
     public static void main(String[] args) throws Exception {
 
-        String tableName = "t_b_chain";
+        String tableName = "t_t_maintain_thumbs_up";
         MybatisGeneratorUtil.generator(JDBC_DRIVER, JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD, PACKAGE_NAME, tableName, TABLE_PREFIX);
     }
 }

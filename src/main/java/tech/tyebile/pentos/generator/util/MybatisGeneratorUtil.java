@@ -60,8 +60,6 @@ public class MybatisGeneratorUtil {
 
         JdbcUtil jdbcUtil = new JdbcUtil(jdbcDriver, jdbcUrl, jdbcUsername, AESCryptUtil.aesDecode(jdbcPassword));
 
-        context.put("generator_javaModelGenerator_targetPackage", packageName + ".model");
-
         generatorConfig_vm = MybatisGeneratorUtil.class.getResource(generatorConfig_vm).getPath();
 
 
@@ -74,7 +72,7 @@ public class MybatisGeneratorUtil {
         context.put("tables", tables);
         context.put("targetProject", targetProject);
         context.put("generator_jdbc_password", AESCryptUtil.aesDecode(jdbcPassword));
-        context.put("generator_javaModelGenerator_targetPackage", packageName + ".model");
+        context.put("generator_javaModelGenerator_targetPackage", packageName);
 
         VelocityUtil.generate(generatorConfig_vm, generatorConfigXml, context);
 
@@ -92,6 +90,9 @@ public class MybatisGeneratorUtil {
             System.out.println(warning);
         }
         System.out.println("========== 结束运行MybatisGenerator =================");
+
+        System.out.println("========== 开始生成Service ==========");
+
 
     }
 
